@@ -1,12 +1,12 @@
 {
-  "name": "react-native-gifted-chat-bbw",
+  "name": "rn-gifted-chat-crystal-teachs",
   "version": "0.0.1",
   "description": "The most complete chat UI for React Native",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thannvph03341/react-native-gifted-chat-bbw.git"
+    "url": "git+https://github.com/diep-crystal/rn-gifted-chat-crystal-teachs.git"
   },
   "keywords": [
     "android",
@@ -21,9 +21,9 @@
   "author": "Fix by devbytes",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/thannvph03341/react-native-gifted-chat-bbw/issues"
+    "url": "https://github.com/diep-crystal/rn-gifted-chat-crystal-teachs/issues"
   },
-  "homepage": "https://github.com/thannvph03341/react-native-gifted-chat-bbw#readme",
+  "homepage": "https://github.com/diep-crystal/rn-gifted-chat-crystal-teachs#readme",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx",
     "test": "jest --no-watchman",
