@@ -10,7 +10,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { FlatList, View, StyleSheet, Keyboard } from "react-native";
+import { FlatList, View, StyleSheet, Keyboard, TouchableOpacity } from "react-native";
 import { uniq } from 'lodash';
 import LoadEarlier from "./LoadEarlier";
 import Message from "./Message";
@@ -169,7 +169,8 @@ export default class MessageContainer extends React.PureComponent {
 
   render() {
     if (this.props.messages.length === 0) {
-      return <View style={styles.container} />;
+      return <TouchableOpacity style={styles.container}
+        onPress={() => { Keyboard.dismiss() }} />;
     }
     const { onTouchStart = undefined } = this.props;
     return (

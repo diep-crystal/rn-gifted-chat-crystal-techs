@@ -280,7 +280,7 @@ class GiftedChat extends React.Component {
         messagesContainerHeight: newMessagesContainerHeight,
       });
     }
-    console.log("newMessagesContainerHeight = ", newMessagesContainerHeight)
+    // console.log("newMessagesContainerHeight = ", newMessagesContainerHeight)
 
   }
 
