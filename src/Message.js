@@ -87,34 +87,36 @@ export default class Message extends React.PureComponent {
   render() {
     const sameUser = isSameUser(this.props.currentMessage, this.props.nextMessage);
     const userName = get(this.props, 'currentMessage.user.name')
+    let isHighlight = this.props.highlightId == this.props.currentMessage._id
     return (
       <View>
         {this.renderDay()}
         {this.props.currentMessage.system ? (
           this.renderSystemMessage()
         ) : (
-            <View
-              style={[
-                styles[this.props.position].container,
-                { marginBottom: sameUser ? 2 : 10 },
-                !this.props.inverted && { marginBottom: 2 },
-                this.props.containerStyle[this.props.position],
-              ]}
-            >
-              {this.props.position === 'left' ? this.renderAvatar() : null}
-              <View>
-                <Text style={{
-                  marginLeft: 6,
-                  marginBottom: 3,
-                  fontSize: 11,
-                  display: this.props.position === 'left' ? 'flex' : 'none'
-                }}>{userName}</Text>
-                {this.renderBubble()}
-              </View>
+            <View style={{ backgroundColor: isHighlight ? '#cccccc' : 'transparent' }}>
+              <View
+                style={[
+                  styles[this.props.position].container,
+                  { marginBottom: sameUser ? 2 : 10 },
+                  !this.props.inverted && { marginBottom: 2 },
+                  this.props.containerStyle[this.props.position],
+                ]}
+              >
+                {this.props.position === 'left' ? this.renderAvatar() : null}
+                <View>
+                  <Text style={{
+                    marginLeft: 6,
+                    marginBottom: 3,
+                    fontSize: 11,
+                    display: this.props.position === 'left' ? 'flex' : 'none'
+                  }}>{userName}</Text>
+                  {this.renderBubble()}
+                </View>
 
-              {this.props.position === 'right' ? this.renderAvatar() : null}
-            </View>
-          )}
+                {this.props.position === 'right' ? this.renderAvatar() : null}
+              </View>
+            </View>)}
       </View>
     );
   }
