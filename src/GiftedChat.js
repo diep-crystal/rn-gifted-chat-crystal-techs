@@ -58,7 +58,7 @@ class GiftedChat extends React.Component {
       composerHeight: MIN_COMPOSER_HEIGHT,
       messagesContainerHeight: null,
       typingDisabled: false,
-      isKeyboardChanged: false
+      isKeyboardChanged: false,
     };
 
     this.onKeyboardWillShow = this.onKeyboardWillShow.bind(this);
@@ -281,7 +281,6 @@ class GiftedChat extends React.Component {
       });
     }
     // console.log("newMessagesContainerHeight = ", newMessagesContainerHeight)
-
   }
 
   async onKeyboardDidShow(e) {
@@ -289,12 +288,12 @@ class GiftedChat extends React.Component {
     // this.onKeyboardWillShow(e);
     // }
     if (this.state.isKeyboardChanged) {
-      return
+      return;
     }
-    await this.setState({ isKeyboardChanged: true })
+    await this.setState({ isKeyboardChanged: true });
     this.onKeyboardWillShow(e);
     this.setIsTypingDisabled(false);
-    await this.setState({ isKeyboardChanged: false })
+    await this.setState({ isKeyboardChanged: false });
   }
 
   async onKeyboardDidHide(e) {
@@ -302,12 +301,12 @@ class GiftedChat extends React.Component {
     // this.onKeyboardWillHide(e);
     // }
     if (this.state.isKeyboardChanged) {
-      return
+      return;
     }
-    await this.setState({ isKeyboardChanged: true })
+    await this.setState({ isKeyboardChanged: true });
     this.onKeyboardWillHide(e);
     this.setIsTypingDisabled(false);
-    await this.setState({ isKeyboardChanged: false })
+    await this.setState({ isKeyboardChanged: false });
   }
 
   scrollToBottom(animated = true) {
@@ -347,6 +346,7 @@ class GiftedChat extends React.Component {
 
         />
         {this.renderChatFooter()}
+        {this.renderChatMention()}
       </AnimatedView>
     );
   }
@@ -494,6 +494,19 @@ class GiftedChat extends React.Component {
     return null;
   }
 
+  renderChatMention() {
+    if (this.props.renderChatMention) {
+      const mentionProps = {
+        ...this.props,
+        text: this.getTextFromProp(this.state.text),
+        onTextChanged: this.onInputTextChanged,
+      };
+      return this.props.renderChatMention(mentionProps);
+    }
+    return null;
+  }
+
+
   renderLoading() {
     if (this.props.renderLoading) {
       return this.props.renderLoading();
@@ -571,6 +584,7 @@ GiftedChat.defaultProps = {
   renderFooter: null,
   renderChatFooter: null,
   renderInputToolbar: null,
+  renderChatMention: null,
   renderComposer: null,
   renderActions: null,
   renderSend: null,
@@ -621,6 +635,7 @@ GiftedChat.propTypes = {
   renderTime: PropTypes.func,
   renderFooter: PropTypes.func,
   renderChatFooter: PropTypes.func,
+  renderChatMention: PropTypes.func,
   renderInputToolbar: PropTypes.func,
   renderComposer: PropTypes.func,
   renderActions: PropTypes.func,
