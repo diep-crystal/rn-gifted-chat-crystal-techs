@@ -182,6 +182,7 @@ export default class MessageContainer extends React.PureComponent {
           automaticallyAdjustContentInsets={false}
           inverted={this.props.inverted}
           data={uniq(this.props.messages)}
+          initialNumToRender={this.props.messages.length}
           style={styles.listStyle}
           onTouchStart={onTouchStart}
           contentContainerStyle={styles.contentContainerStyle}
