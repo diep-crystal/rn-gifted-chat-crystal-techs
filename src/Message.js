@@ -94,7 +94,7 @@ export default class Message extends React.PureComponent {
         {this.props.currentMessage.system ? (
           this.renderSystemMessage()
         ) : (
-            <View style={{ backgroundColor: isHighlight ? '#cccccc' : 'transparent' }}>
+            <View style={{ backgroundColor: isHighlight ? '#cccccc' : 'transparent', paddingTop: isHighlight? 5: 0 }}>
               <View
                 style={[
                   styles[this.props.position].container,
