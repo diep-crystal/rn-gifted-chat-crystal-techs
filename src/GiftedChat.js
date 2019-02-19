@@ -57,9 +57,10 @@ class GiftedChat extends React.Component {
       isInitialized: false, // initialization will calculate maxHeight before rendering the chat
       composerHeight: MIN_COMPOSER_HEIGHT,
       messagesContainerHeight: null,
-      typingDisabled: false,
-      isKeyboardChanged: false,
     };
+
+    this.isKeyboardChanged = false;
+    this.typingDisabled = false;
 
     this.onKeyboardWillShow = this.onKeyboardWillShow.bind(this);
     this.onKeyboardWillHide = this.onKeyboardWillHide.bind(this);
@@ -287,26 +288,26 @@ class GiftedChat extends React.Component {
     // if (Platform.OS === 'android') {
     // this.onKeyboardWillShow(e);
     // }
-    if (this.state.isKeyboardChanged) {
+    if (this.isKeyboardChanged) {
       return;
     }
-    await this.setState({ isKeyboardChanged: true });
+    this.typingDisabled = true
     this.onKeyboardWillShow(e);
     this.setIsTypingDisabled(false);
-    await this.setState({ isKeyboardChanged: false });
+    this.typingDisabled = false
   }
 
   async onKeyboardDidHide(e) {
     // if (Platform.OS === 'android') {
     // this.onKeyboardWillHide(e);
     // }
-    if (this.state.isKeyboardChanged) {
+    if (this.isKeyboardChanged) {
       return;
     }
-    await this.setState({ isKeyboardChanged: true });
-    this.onKeyboardWillHide(e);
+    this.typingDisabled = true
+    // this.onKeyboardWillHide(e);
     this.setIsTypingDisabled(false);
-    await this.setState({ isKeyboardChanged: false });
+    this.typingDisabled = false
   }
 
   scrollToBottom(animated = true) {
@@ -474,6 +475,7 @@ class GiftedChat extends React.Component {
         maxLength: this.getIsTypingDisabled() ? 0 : this.props.maxInputLength,
       },
     };
+    console.log('renderInputToolbar ======')
     if (this.props.renderInputToolbar) {
       return this.props.renderInputToolbar(inputToolbarProps);
     }
