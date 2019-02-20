@@ -20,7 +20,7 @@ export default function Day(
         <View style={wrapperStyle}>
           <Text style={[styles.text, textStyle]}>
             {moment(currentMessage.createdAt)
-              .locale(context.getLocale())
+              //.locale('en')
               .format(dateFormat)
               .toUpperCase()}
           </Text>
